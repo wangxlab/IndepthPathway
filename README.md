@@ -39,7 +39,7 @@ LoadPackage() ## Load necessary packages to run IndepthPathway
 
 ## D.	How to run IndepthPathway for pathway enrichment analysis
 
-## Example codes for IndepthPathway are available at IndepthPathwayExampleCode.R
+# Example codes for IndepthPathway are available at IndepthPathwayExampleCode.R
 
 Check the molecule concept dataset, preCalmatrix, and compare.list we compiled.
 Check the example gct and cls data
