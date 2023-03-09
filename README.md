@@ -8,21 +8,21 @@ The current version of IndepthPathway is 2.8.5. This was tested on R v4.2.1
 
 ## A. Introduction
 
-â€¢	Single-cell sequencing (SCS) enables exploring the pathways and processes of cells and cell populations, however, there is a paucity of pathway enrichment methods designed to tolerate the high noise and low gene coverage of SCS technology. When gene expression data are noisy and signals are sparse, testing pathway enrichment based on the genes measured may not yield statistically significant results which is particularly problematic when detecting the pathways enriched in less abundant cells that are vulnerable to disturbances.
+Single-cell sequencing (SCS) enables exploring the pathways and processes of cells and cell populations, however, there is a paucity of pathway enrichment methods designed to tolerate the high noise and low gene coverage of SCS technology. When gene expression data are noisy and signals are sparse, testing pathway enrichment based on the genes measured may not yield statistically significant results which is particularly problematic when detecting the pathways enriched in less abundant cells that are vulnerable to disturbances.
 
-â€¢	Here we developed a Weighted Concept Signature Enrichment Analysis (WCSEA) algorithm specialized for pathway enrichment analysis from single cell transcriptomics (scRNA-seq), taking account of the levels of differential expressions to detect different magnitudes of pathway alterations, and substantially improve its noise resistance. WCSEA took a broader approach for assessing the functional relations of pathway gene sets to a target gene list, and leverage the universal concept signature of the target gene list (the cumulative signature of molecular concepts characteristic of the target gene list), to tolerate the high noise and low coverage of this technology.
+Here we developed a Weighted Concept Signature Enrichment Analysis (WCSEA) algorithm specialized for pathway enrichment analysis from single cell transcriptomics (scRNA-seq), taking account of the levels of differential expressions to detect different magnitudes of pathway alterations, and substantially improve its noise resistance. WCSEA took a broader approach for assessing the functional relations of pathway gene sets to a target gene list, and leverage the universal concept signature of the target gene list (the cumulative signature of molecular concepts characteristic of the target gene list), to tolerate the high noise and low coverage of this technology.
 
-â€¢	We then incorporated WCSEA into a R package called â€œIndepthPathwayâ€ for biologists to broadly leverage this method for pathway analysis based on bulk and single cell sequencing data. Through simulating the technical variability and dropouts in gene expression characteristic of scRNA-seq, WCSEA yielded overall low deviations in pathway enrichment results. This could be attributed to the computation of the universal concept signature prior to pathway enrichment analysis, which make WCSEA more resistant to noise and missing values of individual gene expressions.
+We then incorporated WCSEA into a R package called â€œIndepthPathwayâ€ for biologists to broadly leverage this method for pathway analysis based on bulk and single cell sequencing data. Through simulating the technical variability and dropouts in gene expression characteristic of scRNA-seq, WCSEA yielded overall low deviations in pathway enrichment results. This could be attributed to the computation of the universal concept signature prior to pathway enrichment analysis, which make WCSEA more resistant to noise and missing values of individual gene expressions.
 
-â€¢	Leveraging its unique strength, IndepthPathway will promote the application of bulk and single cell sequencing technologies to explore the cellular pathway mechanisms at more precise resolution.
+Leveraging its unique strength, IndepthPathway will promote the application of bulk and single cell sequencing technologies to explore the cellular pathway mechanisms at more precise resolution.
 
 ## B.	Basic requirements
 
-â€¢	The uniConSig and CSEA modules are compiled in an R package â€œIndepthPathwayâ€ held at https://github.com/wangxlab/IndepthPathway 
+The uniConSig and CSEA modules are compiled in an R package â€œIndepthPathwayâ€ held at https://github.com/wangxlab/IndepthPathway 
 
-â€¢	To install the package, first install R from CRAN: https://cran.r-project.org/
+To install the package, first install R from CRAN: https://cran.r-project.org/
 
-â€¢	For more user-friendly interface, R-Studio can be installed from here: https://www.rstudio.com/products/rstudio/download/
+For more user-friendly interface, R-Studio can be installed from here: https://www.rstudio.com/products/rstudio/download/
 
 
 ## C. Installing R Packages
@@ -40,8 +40,9 @@ LoadPackage() ## Load necessary packages to run IndepthPathway
 ## D.	How to run IndepthPathway for pathway enrichment analysis
 # Example codes for IndepthPathway are available at IndepthPathwayExampleCode.R
 
-â€¢	Check the molecule concept dataset, preCalmatrix, and compare.list we compiled.
-â€¢ Check the example gct and cls data
+Check the molecule concept dataset, preCalmatrix, and compare.list we compiled.
+Check the example gct and cls data
+
 ```
 setwd("your working directory")
 data(feature.list)
