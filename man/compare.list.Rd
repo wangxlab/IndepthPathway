@@ -12,7 +12,7 @@ A list format. List names are gene signatures and elements are gene symbols
 }
 }
 \source{
-\url{https://github.com/wangxlab/indepthPathway}
+\url{https://github.com/wangxlab/IndepthPathway}
 }
 \usage{
 compare.list

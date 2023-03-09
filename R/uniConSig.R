@@ -7,7 +7,7 @@
 #' @return Calculated weight of target genes
 #' @export
 #'
-#' @examples
+#' @examples CalWeight(list1,list2,method="Ochiai")
 CalWeight<-function(list1,list2,method="Ochiai"){ #method=="Ochiai" or "Jaccard"
   tmp.intersect<-intersect(list1,list2)
   tmp.union<-union(list1,list2)
@@ -20,9 +20,6 @@ CalWeight<-function(list1,list2,method="Ochiai"){ #method=="Ochiai" or "Jaccard"
   }
   return(c(tmp.weight,tmp.weight.1,length(tmp.intersect),length(list1),length(list2)))
 }
-
-
-
 
 
 #' Title batch calculate weight for a target list and a compendia of comparing lists

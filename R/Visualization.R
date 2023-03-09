@@ -19,6 +19,34 @@ pathway.heatmap<-function(matrixData,clustering=TRUE,distanceMatric="euclidean",
 }
 
 
+#' Title Merge upregulated and downregulated pathways. For pathways that are both up or down regulated, the most significant rank will be retained
+#'
+#' @param up.pathway filtered up.deambiguate, up.deambiguate[[1]]
+#' @param down.pathway filtered down.deambiguate, down.deambiguate[[1]]
+#'
+#' @return Merged pathways. The pathways of the most significant rank will be retained
+#' @export
+#'
+#' @examples merge.pathway(up.pathway=up.deambiguate[[1]][1:30,],down.pathway=down.deambiguate[[1]][1:30,])
+merge.pathway<-function(up.pathway,down.pathway){
+  pathway.ambiguous=intersect(up.pathway$Compare.List,down.pathway$Compare.List)
+  up.pathway$Type="UP"
+  down.pathway$Type="DOWN"
+  if (length(pathway.ambiguous)==0){
+    pathway.combine=rbind(up.pathway,down.pathway)
+  }else{
+    ambiguous.uprank=setNames(rownames(up.pathway)[match(pathway.ambiguous,up.pathway$Compare.List)],pathway.ambiguous)
+    ambiguous.downrank=setNames(rownames(down.pathway)[match(pathway.ambiguous,down.pathway$Compare.List)],pathway.ambiguous)
+    pathway.ambiguous.type=setNames(ifelse(as.numeric(ambiguous.uprank[pathway.ambiguous])<=as.numeric(ambiguous.downrank[pathway.ambiguous]),"UP","DOWN"),pathway.ambiguous)
+    up.pathway=up.pathway[!up.pathway$Compare.List %in% names(pathway.ambiguous.type)[pathway.ambiguous.type=="DOWN"],]
+    down.pathway=down.pathway[!down.pathway$Compare.List %in% names(pathway.ambiguous.type)[pathway.ambiguous.type=="UP"],]
+    pathway.combine=rbind(up.pathway,down.pathway)
+  }
+  return(pathway.combine)
+}
+
+
+
 #' Title Option2.Draw network figure for significant pathways based on association file
 #'
 #' @param pathway.out Merged pathway data

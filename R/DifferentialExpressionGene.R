@@ -20,7 +20,7 @@ limmaDEG <- function(ExpDataGCT,ClassData,groups.order=NULL) { # the comparison 
   if (typeof(groups.order)=="NULL"){
     ClassData<-factor(ClassData[2,],levels=ClassData[1,2:3])
   }else{
-    ClassData<-factor(myClass[2,],levels=groups.order)
+    ClassData<-factor(ClassData[2,],levels=groups.order)
   }
   label=sort(unique(as.character(ClassData)))
   fit<-lmFit(expUnique,design=model.matrix(~ClassData))
@@ -47,7 +47,7 @@ limmaDEG <- function(ExpDataGCT,ClassData,groups.order=NULL) { # the comparison 
 #' @export
 #'
 #' @examples scdeDEG(ExpDataGCT, ClassData, groups.order=c("ClassA","ClassB"))
-scdeDEG<-function(ExpDataGCT,ClassData, groups.order=NULL, min.lib.size=100, min.reads=1,min.detected=1,SignPzscore=0.75)  {
+scdeDEG<-function(ExpDataGCT,ClassData, groups.order=NULL, min.lib.size=100, min.reads=1, min.detected=1,SignPzscore=0.75)  {
   #countData=read.table(readCountGCT, stringsAsFactors=F, skip=2, header=T, row.names=NULL, check.names=F, fill=TRUE,sep="\t")
   countUnique<-ExpDataGCT[which(!duplicated(ExpDataGCT[,1])),]
   rownames(countUnique)<-countUnique[,1]

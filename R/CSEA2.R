@@ -12,6 +12,7 @@
 #' @export
 #'
 #' @examples CSEA2(target.score=setNames(as.numeric(uniConSig.result$up.uniConSig), uniConSig.result$subjectID),compare.list,p.cut=1)
+#' @examples CSEA2(target.score=setNames(as.numeric(uniConSig_Up$uniConSig), uniConSig_Up$subjectID),compare.list,p.cut=0.05)
 CSEA2<-function(target.score,compare.list,p.cut=0.05,minsize=5,min.numOnList=5,transformNegWeight=FALSE,cal.qValue=T){
   if (!exists("compare.list")){
     stop("please provide the list of concepts to variable: feature.list")

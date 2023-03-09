@@ -45,3 +45,6 @@ read.gct<-function(gctFile,clsFile){
   myClass=as.data.frame(myClass,stringsAsFactors = F,check.names=F)
   return(list(expData=expUnique,class=myClass))
 }
+
+
+

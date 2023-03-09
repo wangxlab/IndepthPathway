@@ -19,3 +19,6 @@ Calculated weight of target genes
 \description{
 Title Calculate weight based on Ochiai Index
 }
+\examples{
+CalWeight(list1,list2,method="Ochiai")
+}

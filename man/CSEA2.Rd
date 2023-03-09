@@ -37,4 +37,5 @@ Title perform CSEA2 for pathway enrichment analysis based on a dichotomous targe
 }
 \examples{
 CSEA2(target.score=setNames(as.numeric(uniConSig.result$up.uniConSig), uniConSig.result$subjectID),compare.list,p.cut=1)
+CSEA2(target.score=setNames(as.numeric(uniConSig_Up$uniConSig), uniConSig_Up$subjectID),compare.list,p.cut=0.05)
 }
