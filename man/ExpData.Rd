@@ -10,7 +10,7 @@ Data.frame of gene expression data. The first two rows were removed.
 }
 }
 \source{
-\url{https://github.com/wangxlab/indepthPathway}
+\url{https://github.com/wangxlab/IndepthPathway}
 }
 \usage{
 ExpData

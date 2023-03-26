@@ -12,7 +12,7 @@ A gmt file format.
 }
 }
 \source{
-\url{https://github.com/wangxlab/indepthPathway}
+\url{https://github.com/wangxlab/IndepthPathway}
 }
 \usage{
 preCalmatrix
