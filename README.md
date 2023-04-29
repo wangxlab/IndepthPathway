@@ -12,7 +12,6 @@ Single-cell sequencing (SCS) enables exploring the pathways and processes of cel
 
 Here we developed a Weighted Concept Signature Enrichment Analysis (WCSEA) algorithm specialized for pathway enrichment analysis from single cell transcriptomics (scRNA-seq), taking account of the levels of differential expressions to detect different magnitudes of pathway alterations, and substantially improve its noise resistance. WCSEA took a broader approach for assessing the functional relations of pathway gene sets to a target gene list, and leverage the universal concept signature of the target gene list (the cumulative signature of molecular concepts characteristic of the target gene list), to tolerate the high noise and low coverage of this technology.
 
-We then incorporated WCSEA into a R package called IndepthPathway for biologists to broadly leverage this method for pathway analysis based on bulk and single cell sequencing data. Through simulating the technical variability and dropouts in gene expression characteristic of scRNA-seq, WCSEA yielded overall low deviations in pathway enrichment results. This could be attributed to the computation of the universal concept signature prior to pathway enrichment analysis, which make WCSEA more resistant to noise and missing values of individual gene expressions.
 
 Leveraging its unique strength, IndepthPathway will promote the application of bulk and single cell sequencing technologies to explore the cellular pathway mechanisms at more precise resolution.
 
@@ -34,7 +33,7 @@ library(devtools)
 devtools::install_github("wangxlab/IndepthPathway")
 library(IndepthPathway)
 
-LoadPackage() ##MUST RUN: this step automatically install and load all packages required for DGE and IndepthPathway analysis.
+IndepthPathway::LoadPackage() ##MUST RUN: this step automatically install and load all packages required for DGE and IndepthPathway analysis.
 ```
 
 ## D.	How to run IndepthPathway for pathway enrichment analysis
@@ -86,10 +85,10 @@ down.CSEA.result<-CSEA2(target.score=setNames(as.numeric(uniConSig.result$down.u
 ## Parameter, p.cut, is to get significant pathways with the p.cut threshold. 
 ## upPathways set to TRUE or FALSE (for W-CSEA).
 ## Users can choose p.adjust.method: NULL, "bonferroni" or "BH"
-topn=30 #specify the number of top pathways to deambiguate
-up.deambiguate<-deambiguation.CSEA(GEA.result=up.CSEA.result,uniConSig.result=uniConSig.result,compare.list=compare.list,upPathways=TRUE,
+topn=30 #specify the number of top pathways to disambiguate
+up.disambiguate<-disambiguationCSEA(GEA.result=up.CSEA.result,uniConSig.result=uniConSig.result,compare.list=compare.list,upPathways=TRUE,
                                topn=min(c(topn,nrow(up.CSEA.result))),p.cut=0.01,p.adjust.method="bonferroni")  #p.adjust.method-- chose one: NULL or "bonferroni" or "BH"
-down.deambiguate<-deambiguation.CSEA(GEA.result=down.CSEA.result,uniConSig.result=uniConSig.result,compare.list=compare.list,upPathways=FALSE,
+down.disambiguate<-disambiguationCSEA(GEA.result=down.CSEA.result,uniConSig.result=uniConSig.result,compare.list=compare.list,upPathways=FALSE,
                                topn=min(c(topn,nrow(down.CSEA.result))),p.cut=0.01,p.adjust.method="bonferroni") #p.adjust.method-- chose one: NULL or "bonferroni" or "BH"
 
 ```
@@ -113,7 +112,7 @@ ___Option 2: draw network showing the functional associations between selected t
 ## In draw.network(), the parameter, NES.cut specifies the cut off to filter the edges in they pathway association network. The higher the NES.cut, the less edges will be shown. It is recommended to set NES.cut between 1.5 and 2.
 #node.size specifies the size of the nodes, line.thickness specifies the thickness of the lines,font.size specifies the font sizes of the pathway names,wrap.string.width specifies the width to wrap the pathway names
 selectn=30
-pathway.merge=merge.pathway(up.pathway=up.deambiguate[[1]][1:min(c(selectn,nrow(up.deambiguate[[1]]))),],down.pathway=down.deambiguate[[1]][1:min(c(selectn,nrow(down.deambiguate[[1]]))),])
+pathway.merge=mergePathway(up.pathway=up.deambiguate[[1]][1:min(c(selectn,nrow(up.deambiguate[[1]]))),],down.pathway=down.deambiguate[[1]][1:min(c(selectn,nrow(down.deambiguate[[1]]))),])
 pathway.merge.assoc <- pathwayAssociation(topPathway=pathway.merge$Compare.List,compare.list,feature.list,preCalmatrix,minsize=10)
 pdf(file="WCSEA_PathwayAssocHeatmapNetwork.pdf",width=20, height=20)
 draw.network(pathway.out=pathway.merge,assoc=pathway.merge.assoc,NES.cut=2,node.size=1,line.thickness=1,font.size=0.4,wrap.string.width=15)
@@ -169,10 +168,10 @@ uniConSig=cal.uniConSig(target.list=target.list,feature.list=feature.list,preCal
 ## The CSEA2 function took 10 mins when testing
 CSEA.result<-CSEA2(setNames(as.numeric(uniConSig$uniConSig), uniConSig$subjectID),compare.list,p.cut=0.05)#p.cut: the p value cutoff for significant pathways
 
-## Deambiguate top enriched pathways.
+## Disambiguate top enriched pathways.
 ## This step took 20 mins when testing
 topn=100 #specify the number of top pathways to deambiguate
-deambiguate<-deambiguation.CSEA(GEA.result=CSEA.result,uniConSig.result=uniConSig,compare.list=compare.list,topn=min(c(topn,nrow(CSEA.result))),p.cut=0.01)
+disambiguate<-disambiguationCSEA(GEA.result=CSEA.result,uniConSig.result=uniConSig,compare.list=compare.list,topn=min(c(topn,nrow(CSEA.result))),p.cut=0.01)
 
 ## Compute functional associations between selected top pathways
 selectn=30 #specify the number of top pathways to compute associations
@@ -199,15 +198,15 @@ weight=setNames(limma$Signed.Q.Value,row.names(limma))#signed q values will be u
 up.GSEA.result<-CSEA2(target.score=weight,compare.list,p.cut=0.05)
 down.GSEA.result<-CSEA2(target.score=-weight,compare.list,p.cut=0.05)
 
-## Deambiguate up and downregulated pathways
+## Disambiguate up and downregulated pathways
 topn=30 #specify the number of top pathways to deambiguate
-up.deambiguate<-deambiguation.GSEA(GEA.result=up.GSEA.result,weight=weight,compare.list=compare.list,topn=min(c(topn,nrow(up.GSEA.result))),p.cut=0.01)
-down.deambiguate<-deambiguation.GSEA(GEA.result=down.GSEA.result,weight=-weight,compare.list=compare.list,topn=min(c(topn,nrow(down.GSEA.result))),p.cut=0.01)
+up.disambiguate<-disambiguationGSEA(GEA.result=up.GSEA.result,weight=weight,compare.list=compare.list,topn=min(c(topn,nrow(up.GSEA.result))),p.cut=0.01)
+down.disambiguate<-disambiguationGSEA(GEA.result=down.GSEA.result,weight=-weight,compare.list=compare.list,topn=min(c(topn,nrow(down.GSEA.result))),p.cut=0.01)
 
 ###VISULIZATION OF PATHWAY ASSOCIATION NETWORK (Option 2).
 ## Draw network showing the functional associations between selected top pathways 
 selectn=30
-pathway.merge=merge.pathway(up.pathway=up.deambiguate[[1]][1:min(c(selectn,nrow(up.deambiguate[[1]]))),],down.pathway=down.deambiguate[[1]][1:min(c(selectn,nrow(down.deambiguate[[1]]))),])
+pathway.merge=mergePathway(up.pathway=up.deambiguate[[1]][1:min(c(selectn,nrow(up.deambiguate[[1]]))),],down.pathway=down.deambiguate[[1]][1:min(c(selectn,nrow(down.deambiguate[[1]]))),])
 pathway.merge.assoc <- pathwayAssociation(topPathway=pathway.merge$Compare.List,compare.list,feature.list,preCalmatrix,minsize=10)
 pdf(file="GSEA_PathwayAssocHeatmapNetwork.pdf",width=20, height=20)
 draw.network(pathway.out=pathway.merge,assoc=pathway.merge.assoc,NES.cut=2)
