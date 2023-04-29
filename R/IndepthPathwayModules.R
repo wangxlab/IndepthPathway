@@ -703,8 +703,8 @@ CSEA2<-function(target.score,compare.list,p.cut=0.05,minsize=5,min.numOnList=5,t
 #' @return Deambiguated pathway enrichment result
 #' @export
 #'
-#' @examples disambiguation.CSEA(GEA.result=down.CSEA.result,uniConSig.result=uniConSig.result,compare.list=compare.list,upPathways=FALSE,topn=30,p.cut=0.01,p.adjust.method="bonferroni")
-deambiguation.CSEA<-function(GEA.result,uniConSig.result,compare.list,upPathways=NULL,topn=30,p.cut=0.05,p.adjust.method="BH"){ #upPathways TRUE or FALSE (for W-CSEA) or NULL (NULL is for D-CSEA). p.adjust.method-- chose one: NULL or "bonferroni" or "BH"
+#' @examples dismbiguationCSEA(GEA.result=down.CSEA.result,uniConSig.result=uniConSig.result,compare.list=compare.list,upPathways=FALSE,topn=30,p.cut=0.01,p.adjust.method="bonferroni")
+dismbiguationCSEA<-function(GEA.result,uniConSig.result,compare.list,upPathways=NULL,topn=30,p.cut=0.05,p.adjust.method="BH"){ #upPathways TRUE or FALSE (for W-CSEA) or NULL (NULL is for D-CSEA). p.adjust.method-- chose one: NULL or "bonferroni" or "BH"
   topPathway=GEA.result$Compare.List[1:topn]
   topPathway.list=compare.list[topPathway]
   topPathway.del=list()
@@ -775,8 +775,8 @@ deambiguation.CSEA<-function(GEA.result,uniConSig.result,compare.list,upPathways
 #' @return Deambiguated pathway enrichment result by GSEA
 #' @export
 #'
-#' @examples deambiguation.GSEA(GEA.result=down.GSEA.result,weight=-weight,compare.list=compare.list,topn=min(c(topn,nrow(down.GSEA.result))),p.cut=0.8,p.adjust.method="bonferroni")
-deambiguation.GSEA<-function(GEA.result,weight,compare.list,topn=30,p.cut=0.05,transformNegWeight=FALSE,p.adjust.method="BH"){ #p.adjust.method-- chose one: NULL or "bonferroni" or "BH"
+#' @examples disambiguationGSEA(GEA.result=down.GSEA.result,weight=-weight,compare.list=compare.list,topn=min(c(topn,nrow(down.GSEA.result))),p.cut=0.8,p.adjust.method="bonferroni")
+dismbiguationGSEA<-function(GEA.result,weight,compare.list,topn=30,p.cut=0.05,transformNegWeight=FALSE,p.adjust.method="BH"){ #p.adjust.method-- chose one: NULL or "bonferroni" or "BH"
   topPathway=GEA.result$Compare.List[1:topn]
   topPathway.list=compare.list[topPathway]
   topPathway.del=list()
@@ -917,8 +917,8 @@ pathway.heatmap<-function(matrixData,clustering=TRUE,distanceMatric="euclidean",
 #' @return Merged pathways. The pathways of the most significant rank will be retained
 #' @export
 #'
-#' @examples merge.pathway(up.pathway=up.deambiguate[[1]][1:30,],down.pathway=down.deambiguate[[1]][1:30,])
-merge.pathway<-function(up.pathway,down.pathway){
+#' @examples mergePathway(up.pathway=up.deambiguate[[1]][1:30,],down.pathway=down.deambiguate[[1]][1:30,])
+mergePathway<-function(up.pathway,down.pathway){
   pathway.ambiguous=intersect(up.pathway$Compare.List,down.pathway$Compare.List)
   up.pathway$Type="UP"
   down.pathway$Type="DOWN"
