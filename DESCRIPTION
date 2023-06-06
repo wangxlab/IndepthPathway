@@ -1,0 +1,23 @@
+Package: IndepthPathway
+Title: Identify enriched pathways from gene expression data.
+Version: 0.0.0.9000
+Authors@R: 
+    person("Sanghoon", "Lee", , "sal170@pitt.edu", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-8564-2392"))
+Description: IndepthPathway can calculate unoConSig scores and run CSEA, WCSEA, or GSEA to identify enriched pathways.
+License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+        license
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Depends: R (>= 4.2.0)
+LazyData: true
+LazyDataCompression: xz
+Suggests: testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Imports: BiocManager, data.table, dplyr, igraph, influential, limma,
+        magrittr, otuSummary, pheatmap, qvalue, stringr
+NeedsCompilation: no
+Packaged: 2023-06-05 23:08:21 UTC; lees18
+Author: Sanghoon Lee [aut, cre] (<https://orcid.org/0000-0001-8564-2392>)
+Maintainer: Sanghoon Lee <sal170@pitt.edu>
