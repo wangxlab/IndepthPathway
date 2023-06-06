@@ -1,6 +1,3 @@
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 ## How to use IndepthPathway to perform WCSEA, CSEA, and GSEA pathway analysis
 
 __IndepthPathway: an integrated tool for in-depth pathway enrichment analysis based on bulk and single cell sequencing data__
