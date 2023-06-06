@@ -28,7 +28,7 @@ install.packages("devtools")
 library(devtools)
 
 devtools::install_github("wangxlab/IndepthPathway")
-library(IndepthPathway)```
+library(IndepthPathway)
 ```
 
 ## D.	How to run IndepthPathway for pathway enrichment analysis
