@@ -32,13 +32,13 @@ library(IndepthPathway)
 ```
 
 ## D.	How to run IndepthPathway for pathway enrichment analysis
-Example codes for IndepthPathway are available at IndepthPathwayExampleCode_v1.1.R
 
 ## Method I. Perform WCSEA for pathway analysis based on a weighted gene list 
 For example, the statistical values from DGE analysis). This method is more appliable to scRNAseq. 
 ___The WCSEA analysis took 50 mins in total when testing, it might vary depends on the dataset___
 
-Read your gct and cls file of scRNA-seq data. Example gct and cls files are available in this Github.
+___Read your gct and cls file of scRNA-seq data. Example gct and cls files are available in this Github.___
+
 Users can use Limma to find DEGs and calculate signed q-value, which will be used as weigths for WCSEA analysis. 
 provide .gct file that contains single cell gene expression data and .cls file that defines the cell groups, as in the example.
 please refer to: https://www.genepattern.org/file-formats-guide
