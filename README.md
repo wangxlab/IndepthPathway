@@ -37,11 +37,12 @@ library(IndepthPathway)
 For example, the statistical values from DGE analysis). This method is more appliable to scRNAseq. 
 ___The WCSEA analysis took 50 mins in total when testing, it might vary depends on the dataset___
 
-___Read your gct and cls file of scRNA-seq data. Example gct and cls files are available in this Github.___
-
 Users can use Limma to find DEGs and calculate signed q-value, which will be used as weigths for WCSEA analysis. 
 provide .gct file that contains single cell gene expression data and .cls file that defines the cell groups, as in the example.
 please refer to: https://www.genepattern.org/file-formats-guide
+
+___Read your gct and cls file of scRNA-seq data. Example gct and cls files are available in this Github.___
+
 ```{Limma for DEGs}
 gctFile="/YourDirectory/scData_quiescentVsActive.gct"
 clsFile="/YourDirectory/scData_quiescentVsActive.cls"
