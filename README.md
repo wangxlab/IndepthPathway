@@ -2,7 +2,7 @@
 
  The current version of IndepthPathway is 1.0. This was tested on R v4.3.3
 
-__IndepthPathway: an integrated tool for in-depth pathway enrichment analysis based on single cell sequencing data__\
+__IndepthPathway: an integrated tool for in-depth pathway enrichment analysis based on single cell sequencing data__
 
 S Lee, L Deng, Y Wang, K Wang, MA Sartor, XS Wang **Bioinformatics** 39 (6), btad325
 
