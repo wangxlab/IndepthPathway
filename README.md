@@ -4,8 +4,8 @@ __IndepthPathway: an integrated tool for in-depth pathway enrichment analysis ba
 
 https://academic.oup.com/bioinformatics/article/39/6/btad325/7181277
 
-**IndepthPathway: an integrated tool for in-depth pathway enrichment analysis based on single-cell sequencing data**
-S Lee, L Deng, Y Wang, K Wang, MA Sartor, XS Wang
+**IndepthPathway: an integrated tool for in-depth pathway enrichment analysis based on single-cell sequencing data**\
+S Lee, L Deng, Y Wang, K Wang, MA Sartor, XS Wang\
 Bioinformatics 39 (6), btad325
 
 The current version of IndepthPathway is 1.0. This was tested on R v4.3.3
